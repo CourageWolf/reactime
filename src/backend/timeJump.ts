@@ -59,9 +59,12 @@ export default (origin, mode) => {
           target.componentData.hooksIndex,
         );
         const hookState = Object.values(hook);
-
+        console.log('hookscomponenet', hooksComponent);
         if (hooksComponent && hooksComponent.dispatch) {
-          hooksComponent.dispatch(hookState[0]);
+          if (Array.isArray(hookState[0]) && hookState[0].length !== 0 || !Array.isArray(hookState[0])) {
+            console.log('condition is being met', hookState[0])
+            hooksComponent.dispatch(hookState[0]);
+          }
         }
       });
     }
